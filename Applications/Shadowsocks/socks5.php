@@ -87,16 +87,16 @@ function pack_header($addr,$addr_type,$port){
      */
     switch ($addr_type) {
         case ADDRTYPE_IPV4:
-            $header = b"\x01".inet_pton($addr);
+            $header = "\x01".inet_pton($addr);
             break;
         case ADDRTYPE_IPV6:
-            $header = b"\x04".inet_pton($addr);
+            $header = "\x04".inet_pton($addr);
             break;
         case ADDRTYPE_HOST:
             if(strlen($addr)>255){
                 $addr = substr($addr,0,255);
             }
-            $header =  b"\x03".chr(strlen($addr)).$addr;
+            $header = "\x03".chr(strlen($addr)).$addr;
             break;
         default:
             return;
